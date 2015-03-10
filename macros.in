@@ -1147,6 +1147,7 @@ package or when debugging this package.\
 %__transaction_prioreset	%{__plugindir}/prioreset.so
 %__transaction_audit		%{__plugindir}/audit.so
 %__transaction_dbus_announce	%{__plugindir}/dbus_announce.so
+%__transaction_ldconfig		%{__plugindir}/ldconfig.so
 
 #------------------------------------------------------------------------------
 # Macros for further automated spec %setup and patch application
