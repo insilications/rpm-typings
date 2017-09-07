@@ -44,28 +44,7 @@ static rpm_time_t getBuildTime(void)
 static char * buildHost(void)
 {
     char* hostname;
-    char *bhMacro;
-
-    bhMacro = rpmExpand("%{?_buildhost}", NULL);
-    if (strcmp(bhMacro, "") != 0) {
-        rasprintf(&hostname, "%s", bhMacro);
-    } else {
-	hostname = rcalloc(NI_MAXHOST + 1, sizeof(*hostname));
-	if (gethostname(hostname, NI_MAXHOST) == 0) {
-	    struct addrinfo *ai, hints;
-	    memset(&hints, 0, sizeof(hints));
-	    hints.ai_flags = AI_CANONNAME;
-
-	    if (getaddrinfo(hostname, NULL, &hints, &ai) == 0) {
-		strcpy(hostname, ai->ai_canonname);
-		freeaddrinfo(ai);
-	    } else {
-		rpmlog(RPMLOG_WARNING,
-                    _("Could not canonicalize hostname: %s\n"), hostname);
-	    }
-	}
-    }
-    free(bhMacro);
+    rasprintf(&hostname, "%s", "localhost");
     return(hostname);
 }
 
