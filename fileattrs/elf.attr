@@ -1,3 +1,4 @@
 %__elf_provides		%{_rpmconfigdir}/elfdeps --provides
 %__elf_requires		%{_rpmconfigdir}/elfdeps --requires
 %__elf_magic		ELF (32|64)-bit.*$
+%__elf_exclude_path     ^(/usr/lib/debug|(/usr)?/lib(64)?/(i686|x86_64|sse2|haswell|tls))/
