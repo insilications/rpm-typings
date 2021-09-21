@@ -5,4 +5,4 @@ if [ -z "$RPM_BUILD_ROOT" ] || [ "$RPM_BUILD_ROOT" = "/" ]; then
   exit 0
 fi
 
-find "$RPM_BUILD_ROOT" -name "*.la" -type f -delete
+find "$RPM_BUILD_ROOT" -name "*.la" \( -type f -o -type l \) -delete
