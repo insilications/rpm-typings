@@ -1,12 +1,17 @@
 from __future__ import annotations
 from collections.abc import Iterable
-from typing import Any, cast, List, Literal, Optional, Tuple, Union
+from typing import Any, cast, List, Literal, Optional, Tuple, Union, AnyStr, Protocol, NewType
 import sys
 import rpm
 from rpm._rpm import ts as TransactionSetCore
 
-HdrOrFD = Union[rpm.hdr, rpm.AnyFD]
-RunRes = List[Tuple[str, Tuple[rpm.rpmProblemType, Optional[str], int]]]
+class _HasFileno(Protocol):
+    def fileno(self) -> int: ...
+
+rpmProblemType = NewType('rpmProblemType', int)
+
+HdrOrFD = Union[rpm.hdr, Union[Union[int, _HasFileno], AnyStr]]
+RunRes = List[Tuple[str, Tuple[rpmProblemType, Optional[str], int]]]
 CheckRes = List[Tuple[Tuple[str, str, str], Tuple[str, str], int, int, Any]]
 
 # TODO: migrate relevant documentation from C-side
